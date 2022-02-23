@@ -4,8 +4,8 @@
 }
 
 .product-title {
-  font-weight: bold;
-  font-size: 1rem;
+  font-weight: normal;
+  font-size: 1.25rem;
 }
 
 .filter-button {
@@ -40,6 +40,7 @@
   width: 250px;
   height: 200px;
 }
+
 
 button {
   padding: 5px 10px;

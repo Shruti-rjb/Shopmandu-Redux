@@ -5,7 +5,7 @@ import Cart from "./Product/Cart";
 
 
 const Navbar = (props) => {
-const {cart} =props;
+const {cart,setCart} =props;
   // console.log(cart,"cartfornav")
 
   
@@ -15,7 +15,7 @@ const {cart} =props;
       <div className="nav-box ">
         <span className="my-shop">Shopmandu</span>
         <a className="navbar-link me-3">Home</a>
-        <Cart cart={cart} />
+        <Cart cart={cart} setCart={setCart} />
         <div className="user-icon">
           <BiUserCircle />
         </div>

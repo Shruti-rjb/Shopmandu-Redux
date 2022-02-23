@@ -12,10 +12,9 @@ const Cards = (props) => {
   let day = dateObj.getDate();
   const result = `${day}/${month}/${year}`;
 
-  const rupees = (parseInt(price.split('').slice(1).join('')) * 120 ).toFixed(0) ;
-
-
   
+  let newPrice = price.slice(1,price.length);
+  let rupees = Number(newPrice) * 119;
 
   const increment = () => {
     if (count >= stock ? setDisable(true) : setCount(count + 1));
@@ -65,7 +64,7 @@ const Cards = (props) => {
         <p>{name}</p>
         </div>
         <div className="card-text">
-        <p>Rs.
+        <p className="fw-bold">Rs.
           {rupees} <span className="stock"> Stocks left : {stock}</span>
         </p>
         

@@ -7,26 +7,18 @@ import axios from "axios";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 const Product = (props) => {
-  const {cart,setCart} = props
-  
+  const { cart, setCart } = props;
+
   const [products, setProducts] = useState([]);
- 
+
   const [show, setShow] = useState(false);
-  
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
-
   const addItem = (item) => {
-    setCart([...cart,item])
-  }
-
-  const handleDelete =(id)=>{
-    const list = cart.filter((item)=>item.id!==id);
-    setCart(list);
-  }
-
+    setCart([...cart, item]);
+  };
 
   const fetchProducts = async () => {
     const response = await axios.get(
@@ -39,7 +31,6 @@ const Product = (props) => {
 
   useEffect(() => {
     fetchProducts();
-    
   }, []);
 
   // console.log(products);
@@ -116,13 +107,13 @@ const Product = (props) => {
           {products.map((item) => (
             <Cards
               key={item.id}
+              id={item.id}
               name={item.name}
               price={item.price}
               stock={item.stock}
               image={item.image}
               release={item.createDate}
               addItem={addItem}
-              handleDelete={()=>{handleDelete(item.id)}}
             />
           ))}
         </div>

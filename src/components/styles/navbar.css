@@ -38,15 +38,6 @@
     cursor: pointer;
   }
 
-  /* .cart {
-    cursor: pointer;
-  }
-  
-  .cart span:nth-child(1) {
-    font-size: 1rem;
-    padding-left: 2rem; 
-    color: white;
-  } */
 
   .user-icon{
    font-size: 1.5rem;
@@ -55,13 +46,3 @@
  
   }
 
-  /* .cart span:nth-child(2) {
-    padding: 0px 10px;
-    background-color:#141d9ecc;
-    color: white;
-    font-weight: bold;
-    border-radius: 90%;
-    position: relative;
-    font-size: 8px;
-    top: -15px;
-  } */

@@ -5,29 +5,32 @@ import {BsCartPlus} from "react-icons/bs";
 import {AiOutlineDelete} from "react-icons/ai"
 
 
-const Cart = (props) => {
-
-  
-  const {cart,handleDelete} = props;
-  
+  const Cart = (props) => {
+  const {cart,setCart} = props;
   const [show, setShow] = useState(false);
+
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
  
-  
- 
-// console.log(cart,"cartfromcart");
+  const handleDelete = (id) => {
+    let newProducts = cart.filter((item) => item.id !== id);
+    setCart(newProducts);
+  };
+
+
 
   return (
-    <div className="cart">
+    <div>
       <button
         type = "button"
         className ="btn position-relative text-white"
         onClick={handleShow}
       >
         <BsCartPlus  />
-        <span className="position-absolute badge rounded-pill bg-primary "> {cart.length} 
+        <span className="position-absolute badge rounded-pill bg-primary"> {cart.length} 
         </span>
       </button>
 
@@ -36,12 +39,14 @@ const Cart = (props) => {
           <Modal.Title>Items Added</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           {cart.map((item)=>{
-         
-            return (
-             
-              <div className="row">
+               let newPrice = item.price.slice(1,item.price.length);
+                let rupees = Number(newPrice) * 119;
+
             
+            return (
+              <div className="row">
               <div className="col-8">
                 <div className="row">
                   <div className="col-5">
@@ -53,19 +58,17 @@ const Cart = (props) => {
                     />
                   </div>
                   <div className="col-7">
-                    
                     <h5>{item.name}</h5>
-                    <span className="text">{item.price}</span>
+                    <span className="text">Rs.{rupees}</span>
                     <p className="text-success">{item.stock} items left</p>
                    
                   </div>
-                  
                 </div>
 
               </div>
               <div className="col-2">
               <button className="btn-danger"
-              onClick={handleDelete}
+              onClick={()=>handleDelete(item.id)}
                         >
                 <AiOutlineDelete/></button>
               </div>
@@ -75,11 +78,9 @@ const Cart = (props) => {
           })}
          
         </Modal.Body>
-
         <Modal.Footer>
           <div>
-            <p> Total Amount: </p>
-
+            <p > Total Amount: </p>
             <Button variant="success">Checkout</Button>
           </div>
         </Modal.Footer>
