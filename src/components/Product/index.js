@@ -12,36 +12,44 @@ const Product = (props) => {
   const [products, setProducts] = useState([]);
  
   const [show, setShow] = useState(false);
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
- 
+  
 
-  const addItem = (items) => {
-    setCart([...cart,items])
+  const addItem = (item) => {
+    setCart([...cart,item])
   }
+
+  const handleDelete =(id)=>{
+    const list = cart.filter((item)=>item.id!==id);
+    setCart(list);
+  }
+
 
   const fetchProducts = async () => {
     const response = await axios.get(
       "https://electronic-ecommerce.herokuapp.com/api/v1/product"
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
 
     setProducts(response.data.data.product || []);
   };
 
   useEffect(() => {
     fetchProducts();
+    
   }, []);
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="container my-5">
       <div className="row">
         <p className="product-title">
           Products
-          <button className="filter-btn" onClick={handleShow}>
+          <button className="filter-button" onClick={handleShow}>
             <AiTwotoneFilter /> Filter
           </button>
         </p>
@@ -107,14 +115,14 @@ const Product = (props) => {
         <div className="products-card">
           {products.map((item) => (
             <Cards
+              key={item.id}
               name={item.name}
               price={item.price}
               stock={item.stock}
               image={item.image}
               release={item.createDate}
-              key={item.id}
-              id={item.id}
               addItem={addItem}
+              handleDelete={()=>{handleDelete(item.id)}}
             />
           ))}
         </div>

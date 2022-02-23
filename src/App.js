@@ -6,13 +6,14 @@ import Product from "./components/Product/index";
 
 
 
-
 function App() {
+
   const [cart,setCart]= useState([]);
-  // console.log(cart,"cart")
+
+  
   return (
     <>
-      <Navbar cart={cart}/>   
+      <Navbar cart={cart} />   
       <Product cart={cart} setCart={setCart}/>
     </>
   );

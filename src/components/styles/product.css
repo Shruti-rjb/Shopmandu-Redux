@@ -1,81 +1,58 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
+  margin: 0;
+  padding: 0;
+}
 
+.product-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
 
-  .product-title{
-    font-weight: bold;
-    font-size: 1rem;
-  }
+.filter-button {
+  color: #0f4697cc;
+  font-weight: light;
+  float: right;
+  font-size: small;
+  background-color: white;
+  outline: auto;
+}
 
+.products-card {
+  width: 100%;
+  margin: auto;
+  margin-top: 1.5px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+}
 
-  .filter-btn{
-    color:#0f4697cc;
-    font-weight: light;
-    float: right;
-    font-size: small;
-    background-color: white;
-    outline: auto;
-  }
-
-  .products-card {
-    width: 100%;
-    margin: auto;
-    margin-top: 1.5px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-  } 
-
-  
-  .cards {
-    width: 250px;
-    padding: 20px;
-    box-shadow: 0 10px 10px 10px rbga(0, 0, 0, 0.1);
-    
-
-  }
-  .cards:hover {
-    box-shadow: 10px 10px 10px 10px rbga(0, 0, 0, 0.1);
-    cursor: pointer;
-  }
-
-  .image-box img{
-   width: 200px;
-   height: 150px;
-
-  }
-  
+.card{
+  width: 300px;
+  padding: 20px;
  
-  .details p:nth-child(2) {
-    
-    font-size: 1rem;
-    font-weight: light;
-  }
-  .details p:nth-child(3){
-    color: black;
-    font-weight: bold;
-    
-    
-  }
-  .details p:nth-child(4) {
-    font-weight: light;
-    color: black;
-  }
+}
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
 
-  button {
-    padding: 5px 10px;
-    border: none;
-    font-weight: light;
-    font-size: 1rem;
-    background-color: #0f4697cc;
-    outline: none;
-    color:white;
-  }
+.image-box img {
+  width: 250px;
+  height: 200px;
+}
 
-  .stock{
-    color:green;
-    float: right;
-    font-size:1rem;
-  }
+button {
+  padding: 5px 10px;
+  border: none;
+  font-weight: light;
+  font-size: 1rem;
+  background-color: #0f4697cc;
+  outline: none;
+  color: white;
+}
+
+.stock {
+  color: green;
+  float: right;
+  font-size: 1rem;
+}

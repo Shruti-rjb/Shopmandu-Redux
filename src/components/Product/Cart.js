@@ -2,27 +2,32 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {BsCartPlus} from "react-icons/bs";
-
+import {AiOutlineDelete} from "react-icons/ai"
 
 
 const Cart = (props) => {
 
-
-  const {cart} =props;
+  
+  const {cart,handleDelete} = props;
+  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+ 
+  
+ 
 // console.log(cart,"cartfromcart");
+
   return (
     <div className="cart">
       <button
-        type="button"
-        className="btn position-relative text-white"
+        type = "button"
+        className ="btn position-relative text-white"
         onClick={handleShow}
       >
         <BsCartPlus  />
-        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary ">  
+        <span className="position-absolute badge rounded-pill bg-primary "> {cart.length} 
         </span>
       </button>
 
@@ -32,9 +37,12 @@ const Cart = (props) => {
         </Modal.Header>
         <Modal.Body>
           {cart.map((item)=>{
+         
             return (
+             
               <div className="row">
-              <div className="col-6">
+            
+              <div className="col-8">
                 <div className="row">
                   <div className="col-5">
                     <img
@@ -45,10 +53,21 @@ const Cart = (props) => {
                     />
                   </div>
                   <div className="col-7">
+                    
                     <h5>{item.name}</h5>
-                    <p className="text-success">{item.price}</p>
+                    <span className="text">{item.price}</span>
+                    <p className="text-success">{item.stock} items left</p>
+                   
                   </div>
+                  
                 </div>
+
+              </div>
+              <div className="col-2">
+              <button className="btn-danger"
+              onClick={handleDelete}
+                        >
+                <AiOutlineDelete/></button>
               </div>
               
             </div>
