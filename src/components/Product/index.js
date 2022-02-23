@@ -5,35 +5,21 @@ import "../styles/product.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 
-const validationSchema = () =>
-  Yup.object().shape({
-    Price: Yup.string().required(),
-    date: Yup.string().required(),
-    category: Yup.string().required(),
-  });
-
-const Product = () => {
+const Product = (props) => {
+  const {cart,setCart} = props
+  
   const [products, setProducts] = useState([]);
+ 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { values, errors, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      Price: "",
-      date: "",
-      category: "",
-    },
-    onSubmit: (values, { resetForm }) => {
-      setProducts([...products, values]);
-      resetForm({ values: "" });
-    },
+ 
 
-    validationSchema,
-  });
+  const addItem = (items) => {
+    setCart([...cart,items])
+  }
 
   const fetchProducts = async () => {
     const response = await axios.get(
@@ -49,97 +35,72 @@ const Product = () => {
   }, []);
 
   console.log(products);
+
   return (
     <div className="container my-5">
       <div className="row">
         <p className="product-title">
           Products
-          <button className="filter-btn" variant="primary" onClick={handleShow}>
+          <button className="filter-btn" onClick={handleShow}>
             <AiTwotoneFilter /> Filter
           </button>
         </p>
-        <Offcanvas show={show} onHide={handleClose} className="me-3 ">
-          <Offcanvas.Header closeButton className="bg-primary text-white">
+        <Offcanvas show={show} onHide={handleClose}>
+          <Offcanvas.Header closeButton className="bg-secondary text-white">
             <Offcanvas.Title>Filter</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
+            <form>
+              <div>
+                <label for="Price">Price</label> <br />
+                <div className="row">
+                  <div className="col-6">
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="Price"
+                      aria-describedby="Price"
+                      placeholder="Min"
+                    />
+                  </div>
 
-            <div className="Form">
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <label htmlFor="Price">Price</label> <br />
-                  <div className="row">
-                    <div className="col-6">
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="Price"
-                        aria-describedby="Price"
-                        placeholder="Min"
-                        onChange={handleChange}
-                        value={values.Price}
-                      />
-                      {errors?.Price && (
-                        <small className="text-danger">{errors.name}</small>
-                      )}
-                    </div>
-
-                    <div className="col-6">
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="Price1"
-                        aria-describedby="Price"
-                        placeholder="Max"
-                        onChange={handleChange}
-                      />
-                    </div>
+                  <div className="col-6">
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="Price"
+                      aria-describedby="Price"
+                      placeholder="Max"
+                    />
                   </div>
                 </div>
-                <br />
+              </div>
+              <br />
 
-                <div className="mb-3">
-                  <label htmlFor="exampleInputDate1" className="form-label">
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="exampleInputDate1"
-                    aria-describedby="Date"
-                    placeholder="dd/mm/yyy"
-                    onChange={handleChange}
-                    value={values.date}
-                  />
-                </div>
+              <div className="mb-3">
+                <label for="exampleInputDate1" className="form-label">
+                  Date
+                </label>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="exampleInputDate1"
+                  aria-describedby="Date"
+                  placeholder="dd/mm/yyy"
+                />
+              </div>
 
-                <br />
+              <br />
 
-                <div className="mb-3">
-                  <label htmlFor="category" className="form-label">
-                    Category
-                  </label>
-                  <select id="category" className="form-select">
-                    <option>Select Options</option>
-                  </select>
-                </div>
-
-                <section className="footer">
-                  <hr />
-                  <div className="d-flex justify-content-end">
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary me-3"
-                    >
-                      Cancel
-                    </button>
-                    <button type="button" className="btn btn-success">
-                      Apply
-                    </button>
-                  </div>
-                </section>
-              </form>
-            </div>
+              <div className="mb-3">
+                <label for="category" className="form-label">
+                  Category
+                </label>
+                <select id="category" className="form-select">
+                  <option>Select Options</option>
+                </select>
+              </div>
+            </form>
           </Offcanvas.Body>
         </Offcanvas>
 
@@ -153,6 +114,7 @@ const Product = () => {
               release={item.createDate}
               key={item.id}
               id={item.id}
+              addItem={addItem}
             />
           ))}
         </div>

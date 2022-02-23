@@ -26,7 +26,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
-  }
+  } 
 
   
   .cards {
@@ -34,6 +34,7 @@
     padding: 20px;
     box-shadow: 0 10px 10px 10px rbga(0, 0, 0, 0.1);
     
+
   }
   .cards:hover {
     box-shadow: 10px 10px 10px 10px rbga(0, 0, 0, 0.1);

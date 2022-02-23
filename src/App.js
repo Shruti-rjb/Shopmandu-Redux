@@ -1,19 +1,19 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product/index";
-import axios from "axios";
+
 
 
 
 function App() {
-  
+  const [cart,setCart]= useState([]);
+  // console.log(cart,"cart")
   return (
     <>
-      <Navbar />
-      
-      <Product />
+      <Navbar cart={cart}/>   
+      <Product cart={cart} setCart={setCart}/>
     </>
   );
 }

@@ -1,33 +1,24 @@
-import React from 'react';
+import React from "react";
 import "./styles/navbar.css";
+import { BiUserCircle } from "react-icons/bi";
+import Cart from "./Product/Cart";
 
-import {BiUserCircle} from  'react-icons/bi';
-import Cart from './Cart/Cart';
 
-
-const Navbar = () => {
+const Navbar = (props) => {
+const {cart} =props;
+  console.log(cart,"cartfornav")
   return (
-    <nav className='sticky-top'>
-    <div className="nav-box ">
-      <span className="my-shop">
-       
-        Shopmandu
-      </span>
-      <a className='navbar-link'>Home</a>
-      <div className="cart">
-        <span>
-       
-          <Cart />
-        </span>
-        <span></span>
+    <nav className="sticky-top">
+      <div className="nav-box ">
+        <span className="my-shop">Shopmandu</span>
+        <a className="navbar-link me-3">Home</a>
+        <Cart cart={cart}/>
+        <div className="user-icon">
+          <BiUserCircle />
+        </div>
       </div>
-      <div className='user-icon'>
-        <BiUserCircle/>
-      </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
 };
- 
 
-export default Navbar
+export default Navbar;
