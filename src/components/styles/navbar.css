@@ -5,19 +5,17 @@
   
   nav {
     width: 100%;
-    height: 60px;
+    height: 3.75rem;
     background-color: #0f4697cc;
     opacity: 0.9;
   }
   
   .nav-box {
     width: 80%;
-    margin: auto;
-   ;
+    margin:auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    line-height: 60px;
+    line-height: 4.375rem;
   }
 
   .navbar-link{
@@ -39,10 +37,10 @@
   }
 
 
-  .user-icon{
-   font-size: 1.5rem;
-   color: white;
-   padding-left: 2rem;
- 
+ .user-image {
+    height: 2rem;
+    padding-left: 2rem;
+    /* margin-bottom: 1rem; */
+    
   }
 

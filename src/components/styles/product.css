@@ -20,16 +20,15 @@
 .products-card {
   width: 100%;
   margin: auto;
-  margin-top: 1.5px;
+  margin-top: 0.094rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
 }
 
 .card{
-  width: 300px;
-  padding: 20px;
- 
+  width:18.75rem;
+  padding: 1.25rem;
 }
 .card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -37,8 +36,8 @@
 }
 
 .image-box img {
-  width: 250px;
-  height: 200px;
+  width: 15.625rem;
+  height: 12.5rem;
 }
 
 
@@ -57,3 +56,4 @@ button {
   float: right;
   font-size: 1rem;
 }
+

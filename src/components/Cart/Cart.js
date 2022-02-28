@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
 import {BsCartPlus} from "react-icons/bs";
 import {AiOutlineDelete} from "react-icons/ai"
@@ -13,8 +13,6 @@ import {AiOutlineDelete} from "react-icons/ai"
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
- 
   const handleDelete = (id) => {
     let newProducts = cart.filter((item) => item.id !== id);
     setCart(newProducts);
@@ -26,7 +24,7 @@ import {AiOutlineDelete} from "react-icons/ai"
     <div>
       <button
         type = "button"
-        className ="btn position-relative text-white"
+        className ="btn position-relative text-white mb-2"
         onClick={handleShow}
       >
         <BsCartPlus  />
@@ -41,10 +39,9 @@ import {AiOutlineDelete} from "react-icons/ai"
         <Modal.Body>
 
           {cart.map((item)=>{
-               let newPrice = item.price.slice(1,item.price.length);
-                let rupees = Number(newPrice) * 119;
-
-            
+              let newPrice = item.price.slice(1,item.price.length);
+              let rupees = Number(newPrice) * 119;
+              
             return (
               <div className="row">
               <div className="col-8">
@@ -79,10 +76,11 @@ import {AiOutlineDelete} from "react-icons/ai"
          
         </Modal.Body>
         <Modal.Footer>
-          <div>
-            <p > Total Amount: </p>
-            <Button variant="success">Checkout</Button>
-          </div>
+         
+              <div>
+              {/* <p > {Total Amount:Rs} </p> */}
+            </div>
+          
         </Modal.Footer>
       </Modal>
     </div>

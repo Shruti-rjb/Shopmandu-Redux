@@ -17,6 +17,7 @@ const Product = (props) => {
   const handleShow = () => setShow(true);
 
   const addItem = (item) => {
+    
     setCart([...cart, item]);
   };
 
@@ -105,8 +106,9 @@ const Product = (props) => {
 
         <div className="products-card">
           {products.map((item) => (
+            
             <Cards
-              key={item.id}
+             key={item.id}
               id={item.id}
               name={item.name}
               price={item.price}

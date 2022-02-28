@@ -1,14 +1,10 @@
 import React from "react";
 import "./styles/navbar.css";
-import { BiUserCircle } from "react-icons/bi";
-import Cart from "./Product/Cart";
-
+import Cart from "./Cart/Cart";
+import user from "../images/user.png";
 
 const Navbar = (props) => {
-const {cart,setCart} =props;
-  // console.log(cart,"cartfornav")
-
-  
+  const { cart, setCart } = props;
 
   return (
     <nav className="sticky-top">
@@ -16,9 +12,7 @@ const {cart,setCart} =props;
         <span className="my-shop">Shopmandu</span>
         <a className="navbar-link me-3">Home</a>
         <Cart cart={cart} setCart={setCart} />
-        <div className="user-icon">
-          <BiUserCircle />
-        </div>
+        <img src={user} alt="user image" className="user-image mb-2" />
       </div>
     </nav>
   );

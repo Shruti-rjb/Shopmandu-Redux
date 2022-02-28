@@ -24,10 +24,10 @@ const Cards = (props) => {
     if (count > 0 ? setCount(count - 1) : 0);
   };
 
-  // console.log(props)
+  
   
   return (
-    <div className="card cards my-3">
+    <div className="card cards my-3 ">
       <div className=" image-box ">
         <img className="card-img-top"
           src={`https://electronic-ecommerce.herokuapp.com/${image}`}
@@ -35,31 +35,33 @@ const Cards = (props) => {
         />
       </div>
 
-      <div className="card-body">
-        <div
-          className=" btn-group buttonStyling float-end"
+        <div className="card-body">
+          <div
+          className="btn-group float-end"
           role="group"
           aria-label="Basic outlined example"
         >
           <button
             type="button"
-            className="btn btn-outline-primary"
+            className="btn btn-outline-secondary"
             onClick={decrement}
           >
             -
           </button>
-          <button type="button" className="btn btn-outline-primary">
+          <button type="button" className="btn btn-outline-secondary">
             {count}
           </button>
           <button
             type="button"
-            disabled={disable}
-            className="btn btn-outline-primary"
+            className="btn btn-outline-secondary"
             onClick={increment}
           >
             +
           </button>
         </div>
+        </div>
+       
+        
         <div className="card-title">
         <p>{name}</p>
         </div>
@@ -71,14 +73,14 @@ const Cards = (props) => {
         <p>Released On : {result}</p>
 
         <p>{category}</p>
-        </div>
+        
       </div>
-      <button
+      <button 
+      
         onClick={() => {
           addItem(props);
         }}
       >
-       
         Add To Cart
       </button>
     </div>
