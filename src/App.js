@@ -13,7 +13,7 @@ function App() {
   
   return (
     <>
-      <Navbar cart={cart} setCart={setCart}  />   
+      <Navbar cart={cart} setCart={setCart}   />   
       <Product cart={cart} setCart={setCart}/>
     </>
   );

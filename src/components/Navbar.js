@@ -4,7 +4,7 @@ import Cart from "./Cart/Cart";
 import user from "../images/user.png";
 
 const Navbar = (props) => {
-  const { cart, setCart } = props;
+  const { cart, setCart} = props;
 
   return (
     <nav className="sticky-top">

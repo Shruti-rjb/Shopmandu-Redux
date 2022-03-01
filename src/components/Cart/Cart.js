@@ -15,10 +15,12 @@ import {AiOutlineDelete} from "react-icons/ai"
 
   const handleDelete = (id) => {
     let newProducts = cart.filter((item) => item.id !== id);
+    
     setCart(newProducts);
   };
 
-
+ 
+  let total = 0;
 
   return (
     <div>
@@ -37,16 +39,17 @@ import {AiOutlineDelete} from "react-icons/ai"
           <Modal.Title>Items Added</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
+        
           {cart.map((item)=>{
-              let newPrice = item.price.slice(1,item.price.length);
-              let rupees = Number(newPrice) * 119;
-              
+              let convertedPrice = item.price.slice(1,item.price.length);
+              let rupees = Number(convertedPrice) * 120;
+             
             return (
-              <div className="row">
+              <div className="row" key ={item.id}>
               <div className="col-8">
                 <div className="row">
                   <div className="col-5">
+
                     <img
                       src={`https://electronic-ecommerce.herokuapp.com/${item.image}`}
                       alt="Image on cart"
@@ -56,7 +59,8 @@ import {AiOutlineDelete} from "react-icons/ai"
                   </div>
                   <div className="col-7">
                     <h5>{item.name}</h5>
-                    <span className="text">Rs.{rupees}</span>
+                    <span className="text">Rs.{rupees} </span>
+                    <span style={{"display":"none"}}>{total+=rupees}</span>
                     <p className="text-success">{item.stock} items left</p>
                    
                   </div>
@@ -76,9 +80,10 @@ import {AiOutlineDelete} from "react-icons/ai"
          
         </Modal.Body>
         <Modal.Footer>
-         
+              
               <div>
-              {/* <p > {Total Amount:Rs} </p> */}
+              <p style={{"font-weight":"bolder" , "font":"monospace 15px "}} > Total Amount :
+              Rs.{total} </p>
             </div>
           
         </Modal.Footer>

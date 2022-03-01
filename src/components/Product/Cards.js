@@ -13,8 +13,8 @@ const Cards = (props) => {
   const result = `${day}/${month}/${year}`;
 
   
-  let newPrice = price.slice(1,price.length);
-  let rupees = Number(newPrice) * 119;
+  let convertedPrice = price.slice(1,price.length);
+  let rupees = Number(convertedPrice) * 120;
 
   const increment = () => {
     if (count >= stock ? setDisable(true) : setCount(count + 1));
