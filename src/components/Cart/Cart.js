@@ -82,7 +82,7 @@ import {AiOutlineDelete} from "react-icons/ai"
         <Modal.Footer>
               
               <div>
-              <p style={{"font-weight":"bolder" , "font":"monospace 15px "}} > Total Amount :
+              <p style={{"font-weight":"bolder" , "font-family":"monospace "}} > Total Amount :
               Rs.{total} </p>
             </div>
           
