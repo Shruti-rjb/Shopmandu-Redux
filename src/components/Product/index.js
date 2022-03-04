@@ -45,7 +45,7 @@ const Product = (props) => {
             <AiTwotoneFilter /> Filter
           </button>
         </p>
-        <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas show={show} onHide={handleClose} placement={'end'}>
           <Offcanvas.Header closeButton className="bg-secondary text-white">
             <Offcanvas.Title>Filter</Offcanvas.Title>
           </Offcanvas.Header>
