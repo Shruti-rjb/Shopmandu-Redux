@@ -1,17 +1,26 @@
 import React from "react";
 import { useState } from "react";
+import { addToCart } from "../../redux/actions/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { increment } from "../../redux/actions/increment";
+import { decrement } from "../../redux/actions/decrement";
+
 
 const Cards = (props) => {
-  const { image, name, price, stock, release, category, addItem } = props;
+  const { image, name, price, stock, release, category, addItem ,id} = props;
   const [count, setCount] = useState(0);
   const [disable, setDisable] = useState(false);
+
+ // const count = useSelector((state)=>state.product.count)
+  
 
   let dateObj = new Date(release);
   let month = dateObj.getMonth();
   let year = dateObj.getFullYear();
   let day = dateObj.getDate();
   const result = `${day}/${month}/${year}`;
-
+  const dispatch = useDispatch();
+  
   
   let convertedPrice = price.slice(1,price.length);
   let rupees = Number(convertedPrice) * 120;
@@ -44,7 +53,7 @@ const Cards = (props) => {
           <button
             type="button"
             className="btn btn-outline-secondary"
-            onClick={decrement}
+           onClick={decrement}
           >
             -
           </button>
@@ -78,7 +87,9 @@ const Cards = (props) => {
       <button 
       
         onClick={() => {
-          addItem(props);
+          //addItem(props);
+          dispatch(addToCart(id))
+         
         }}
       >
         Add To Cart

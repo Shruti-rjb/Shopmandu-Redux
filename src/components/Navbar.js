@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/navbar.css";
 import Cart from "./Cart/Cart";
 import user from "../images/user.png";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const { cart, setCart} = props;
@@ -12,7 +13,8 @@ const Navbar = (props) => {
         <span className="my-shop">Shopmandu</span>
         <a className="navbar-link me-3">Home</a>
         <Cart cart={cart} setCart={setCart} />
-        <img src={user} alt="user image" className="user-image mb-2" />
+        <Link to = "/login"><img src={user} alt="user image" className="user-image mb-2" /></Link>
+        
       </div>
     </nav>
   );

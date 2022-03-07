@@ -1,0 +1,21 @@
+.checkoutCart{
+  background-color: #0f4697cc;
+  margin:0;
+  padding: 0;
+}
+
+
+.checkoutForm{
+    max-width: 80%;
+    margin: 5rem auto;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 7%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+    border-radius: 0.9rem;
+    background-color: #ffffff;
+    padding: 10px  14px;
+  }
+
+  .header{
+    background-color:#0f4697cc ;
+    color: #ffffff;
+    padding: 8px;
+  }
