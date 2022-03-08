@@ -11,7 +11,7 @@ const Cards = (props) => {
   const [count, setCount] = useState(0);
   const [disable, setDisable] = useState(false);
 
- // const count = useSelector((state)=>state.product.count)
+  //const count = useSelector((state)=>state.product.count)
   
 
   let dateObj = new Date(release);
@@ -19,19 +19,20 @@ const Cards = (props) => {
   let year = dateObj.getFullYear();
   let day = dateObj.getDate();
   const result = `${day}/${month}/${year}`;
+  
   const dispatch = useDispatch();
   
   
   let convertedPrice = price.slice(1,price.length);
   let rupees = Number(convertedPrice) * 120;
 
-  const increment = () => {
-    if (count >= stock ? setDisable(true) : setCount(count + 1));
-  };
+  // const increment = () => {
+  //   if (count >= stock ? setDisable(true) : setCount(count + 1));
+  // };
 
-  const decrement = () => {
-    if (count > 0 ? setCount(count - 1) : 0);
-  };
+  // const decrement = () => {
+  //   if (count > 0 ? setCount(count - 1) : 0);
+  // };
 
   
   
@@ -53,7 +54,9 @@ const Cards = (props) => {
           <button
             type="button"
             className="btn btn-outline-secondary"
-           onClick={decrement}
+           onClick ={()=> {setCount(count - 1)}}
+           disabled = {count<=0 ? true : false}
+
           >
             -
           </button>
@@ -63,8 +66,10 @@ const Cards = (props) => {
           <button
             type="button"
             className="btn btn-outline-secondary"
-            onClick={increment}
-          >
+            // onClick={increment}
+            onClick ={()=> {setCount(count + 1)}}
+            disabled = {count>= stock? true : false}
+            >
             +
           </button>
         </div>
@@ -76,7 +81,8 @@ const Cards = (props) => {
         </div>
         <div className="card-text">
         <p className="fw-bold">Rs.
-          {rupees} <span className="stock"> Stocks left : {stock}</span>
+          {rupees}
+           <span className="stock"> Stocks left : {stock}</span>
         </p>
         
         <p>Released On : {result}</p>
@@ -84,14 +90,7 @@ const Cards = (props) => {
         <p>{category}</p>
         
       </div>
-      <button 
-      
-        onClick={() => {
-          //addItem(props);
-          dispatch(addToCart(id))
-         
-        }}
-      >
+      <button type= "submit" disabled= {count === 0 ? true : false} onClick={() => {dispatch(addToCart(id, count))}} >
         Add To Cart
       </button>
     </div>

@@ -25,31 +25,28 @@ const productReducer = (state = initialState, action) => {
       //  console.log(item,"data")
       return {
         ...state,
-        cart: [...state.cart,item]
+        cart: [...state.cart,{...item, qty: action.payload.qty}]
       };
-
-
-      case INCREMENT:
-        //const countiItem = state.productLists.find((product)=> product.id === action.payload.id)
-       // console.log(countiItem,"hekjjo")
-       return {
-          ...state,
-          count : state.count + action.payload.number
-        
-          
-       }
+      // const item = state.cart.find(
+      //   (product) => product.id === action.payload.id
+      // );
+      // const cartProduct = state.productLists.filter(
+      //   (product) => product.id === action.payload.id
+      // );
+      // return {
+      //   ...state,
+      //   cart: item
+      //     ? state.cart.map((cartItem) => 
+      //     cartItem.id === action.payload.id
+      //       ? {
+      //           ...cartItem,
+      //           qty: cartItem.qty + action.payload.qty
+      //         }
+      //       : cartItem
+      //     )
+      //     : [...state.cart, { ...cartProduct, qty: action.payload.qty }],
+      // };
      
-
-      case DECREMENT:
-        
-      return {
-        ...state,
-        count : state.count - action.payload.number
-      
-        
-      };
-
-
       case DELETE_FROM_CART:
      
       return {

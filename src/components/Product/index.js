@@ -64,12 +64,8 @@ const Product = (props) => {
           <Offcanvas.Header closeButton className="bg-secondary text-white">
             <Offcanvas.Title>Filter</Offcanvas.Title>
           </Offcanvas.Header>
-          {isLoading ? (
-            <div className="d-flex justify-content-center">
-              <HashLoader />
-            </div>
-          ) : (
-            <>
+          
+           
               <Offcanvas.Body>
                 <form>
                   <div>
@@ -126,13 +122,12 @@ const Product = (props) => {
                       <option>mobile</option>
                     </select>
                   </div>
-                  <button type="submit" className="btn btn-secondary mt-4 ">
-                    Apply
+                  <button type="submit" className="btn btn-primary mt-4 ">
+                    Search
                   </button>
                 </form>
               </Offcanvas.Body>
-            </>
-          )}
+            
         </Offcanvas>
 
         {/* <Offcanvas.Body>
