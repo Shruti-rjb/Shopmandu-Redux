@@ -1,13 +1,11 @@
-import { DECREMENT } from "../constants"
+import { DECREMENT } from "../constants";
 
-
-export const decrement = (itemId,number)=>{
-    return{
-      type : DECREMENT,
-      payload : 
-      {
-        id :itemId,
-        number:1
-      }
-      }
-  }
+export const decrement = (itemId, number) => {
+  return {
+    type: DECREMENT,
+    payload: {
+      id: itemId,
+      number: 1,
+    },
+  };
+};

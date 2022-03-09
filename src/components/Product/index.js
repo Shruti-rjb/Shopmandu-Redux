@@ -6,16 +6,13 @@ import ScrollToTop from "react-scroll-to-top";
 import { HashLoader } from "react-spinners";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { fetchProducts } from "../../redux/actions/product";
-import { bindActionCreators } from "redux";
-
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { filterItems } from "../../redux/actions/filter";
 
 const Product = (props) => {
-  
-    const { cart, setCart } = props;
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,31 +20,36 @@ const Product = (props) => {
 
   const products = useSelector((state) => state.product.productLists);
   const isLoading = useSelector((state) => state.product.isLoading);
-  //const cart = useSelector((state)=>state.addToCart.cart)
+  //console.log(products)
 
   const dispatch = useDispatch();
- // const {addToCart} = bindActionCreators(addToCart,dispatch)
-
-  const addItem = (item) => {
-    // console.log(item);
-    setCart([...cart, item]);
-    // , dispatch(addToCart())
-  };
-
-  // const fetchProducts = async () => {
-  //   const response = await axios.get(
-  //     "https://electronic-ecommerce.herokuapp.com/api/v1/product"
-  //   );
-  //   // console.log(response.data.data);
-
-  //   setProducts(response.data.data.product || []);
-  // };
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
-  // console.log(products);
+
+  const validationSchema = Yup.object({
+    minPrice: Yup.string().required("Minimum price is required"),
+    maxPrice: Yup.string().required("Maximum price is required"),
+    // date: Yup.date().required("Date is required"),
+    category: Yup.string().required("Category is required"),
+  });
+
+  const { values, handleSubmit, handleChange} = useFormik({
+    initialValues: {
+      
+      minPrice: "",
+      maxPrice: "",
+      date: "",
+      category: "",
+    },
+    onSubmit : (values) => {
+        dispatch(filterItems(values.minPrice , values.maxPrice, values.category));
+       
+      },
+    validationSchema
+  })
 
   return (
     <div className="container my-5">
@@ -58,90 +60,28 @@ const Product = (props) => {
             <AiTwotoneFilter /> Filter
           </button>
         </p>
-        <ScrollToTop/>
+        <ScrollToTop smooth/>
 
         <Offcanvas show={show} onHide={handleClose} placement={"end"}>
           <Offcanvas.Header closeButton className="bg-secondary text-white">
             <Offcanvas.Title>Filter</Offcanvas.Title>
           </Offcanvas.Header>
+          <Offcanvas.Body>
           
-           
-              <Offcanvas.Body>
-                <form>
-                  <div>
-                    <label htmlFor="Price">Price</label> <br />
-                    <div className="row">
-                      <div className="col-6">
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="Price"
-                          aria-describedby="Price"
-                          placeholder="Min"
-                        />
-                      </div>
-
-                      <div className="col-6">
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="Price"
-                          aria-describedby="Price"
-                          placeholder="Max"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <br />
-
-                  <div className="mb-3">
-                    <label htmlFor="exampleInputDate1" className="form-label">
-                      Date
-                    </label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      id="exampleInputDate1"
-                      aria-describedby="Date"
-                      placeholder="dd/mm/yyy"
-                    />
-                  </div>
-
-                  <br />
-
-                  <div className="mb-3">
-                    <label htmlFor="category" className="form-label">
-                      Category
-                    </label>
-                    <select id="category" className="form-select">
-                      <option>Select Options</option>
-                      <option>laptop</option>
-                      <option>keyboard</option>
-                      <option>watch</option>
-                      <option>headseat</option>
-                      <option>mobile</option>
-                    </select>
-                  </div>
-                  <button type="submit" className="btn btn-primary mt-4 ">
-                    Search
-                  </button>
-                </form>
-              </Offcanvas.Body>
-            
-        </Offcanvas>
-
-        {/* <Offcanvas.Body>
-            <form>
-              <div>
+      
+              <form onSubmit={handleSubmit}>
+                <div>
                 <label htmlFor="Price">Price</label> <br />
                 <div className="row">
                   <div className="col-6">
                     <input
                       type="number"
                       className="form-control"
-                      id="Price"
+                      id="minPrice"
                       aria-describedby="Price"
                       placeholder="Min"
+                      onChange ={handleChange}
+                      value = {values.minPrice}
                     />
                   </div>
 
@@ -149,9 +89,11 @@ const Product = (props) => {
                     <input
                       type="number"
                       className="form-control"
-                      id="Price"
+                      id="maxPrice"
                       aria-describedby="Price"
                       placeholder="Max"
+                      onChange={handleChange}
+                      value = {values.maxPrice}
                     />
                   </div>
                 </div>
@@ -159,15 +101,17 @@ const Product = (props) => {
               <br />
 
               <div className="mb-3">
-                <label htmlFor="exampleInputDate1" className="form-label">
+                <label htmlFor="date" className="form-label">
                   Date
                 </label>
                 <input
                   type="date"
                   className="form-control"
-                  id="exampleInputDate1"
+                  id="date"
                   aria-describedby="Date"
                   placeholder="dd/mm/yyy"
+                  value={values.date}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -177,13 +121,24 @@ const Product = (props) => {
                 <label htmlFor="category" className="form-label">
                   Category
                 </label>
-                <select id="category" className="form-select">
+                <select id="category" className="form-select"  value={values.category} onChange={handleChange}>
                   <option>Select Options</option>
+                  <option>Laptop</option>
+                  <option>Keyboard</option>
+                  <option>Watch</option>
+                  <option>Headset</option>
+                  <option>Mobile</option>
                 </select>
               </div>
+              <button type="submit" className="btn btn-primary mt-4 " >
+                Search
+              </button>
             </form>
+
+            
+            
           </Offcanvas.Body>
-        </Offcanvas> */}
+        </Offcanvas>
 
         {isLoading ? (
           <div className="d-flex justify-content-center">
@@ -192,7 +147,6 @@ const Product = (props) => {
         ) : (
           <div className="products-card">
             {products.map((item) => (
-              
               <Cards
                 key={item.id}
                 id={item.id}
@@ -201,7 +155,6 @@ const Product = (props) => {
                 stock={item.stock}
                 image={item.image}
                 release={item.createDate}
-                addItem={addItem}
               />
             ))}
           </div>

@@ -2,8 +2,11 @@ import React from "react";
 import "../styles/login.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+
 
 export const Checkout = () => {
+  const navigate = useNavigate()
   return (
     <div className="checkoutCart">
       <div className="container">
@@ -22,8 +25,18 @@ export const Checkout = () => {
             telephoneNumber: Yup.number().required("Required"),
             date: Yup.date().required("Required"),
           })}
-          onSubmit={(values, { resetForm }) => {
-            resetForm({ values: "" });
+          onSubmit={(values, actions) => {
+           // resetForm({ values: "" })
+           navigate("/");
+            //   setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            //   actions.setSubmitting(false);
+            //   actions.resetForm({
+            //     values:""
+            //   }
+
+            //   )
+            // }, 2000);
           }}
         >
           {(formik) => (
@@ -108,7 +121,7 @@ export const Checkout = () => {
 
               <button
                 type="submit"
-                value="Send"
+               
                 className="btn btn-primary mt-3 "
               >
                 Submit

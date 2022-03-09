@@ -65,7 +65,7 @@ const Cart = (props) => {
                       <span style={{ display: "none" }}>
                         {(total += rupees * item.qty)}
                       </span>
-                      <p className="text-success">{item.stock} items left</p>
+                      <p className="text-success">{item.stock-item.qty} items left</p>
                     </div>
                   </div>
                 </div>

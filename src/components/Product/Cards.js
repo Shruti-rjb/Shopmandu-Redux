@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { addToCart } from "../../redux/actions/cart";
-import { useDispatch, useSelector } from "react-redux";
-import { increment } from "../../redux/actions/increment";
-import { decrement } from "../../redux/actions/decrement";
+import { useDispatch } from "react-redux";
+
 
 
 const Cards = (props) => {
   const { image, name, price, stock, release, category, addItem ,id} = props;
   const [count, setCount] = useState(0);
+  
   const [disable, setDisable] = useState(false);
 
   //const count = useSelector((state)=>state.product.count)
@@ -26,6 +26,8 @@ const Cards = (props) => {
   let convertedPrice = price.slice(1,price.length);
   let rupees = Number(convertedPrice) * 120;
 
+  
+
   // const increment = () => {
   //   if (count >= stock ? setDisable(true) : setCount(count + 1));
   // };
@@ -37,8 +39,8 @@ const Cards = (props) => {
   
   
   return (
-    <div className="card cards my-3 ">
-      <div className=" image-box ">
+    <div className=" card cards my-3 ">
+      <div className=" image-box">
         <img className="card-img-top"
           src={`https://electronic-ecommerce.herokuapp.com/${image}`}
           alt="Product image"
@@ -82,7 +84,7 @@ const Cards = (props) => {
         <div className="card-text">
         <p className="fw-bold">Rs.
           {rupees}
-           <span className="stock"> Stocks left : {stock}</span>
+           <span className="stock"> Stocks left : {stock-count}</span>
         </p>
         
         <p>Released On : {result}</p>

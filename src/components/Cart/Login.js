@@ -4,7 +4,8 @@ export const Login = () => {
   {
     return (
       <>
-        <div className="container">
+      <div className="checkoutCart">
+      <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-4">
               <form className="mt-5">
@@ -47,6 +48,8 @@ export const Login = () => {
             </div>
           </div>
         </div>
+        </div>
+        
       </>
     );
   }
