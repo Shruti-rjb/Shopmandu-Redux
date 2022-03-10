@@ -46,7 +46,7 @@ const Product = (props) => {
     },
     onSubmit : (values) => {
         dispatch(filterItems(values.minPrice , values.maxPrice, values.category));
-       
+      
       },
     validationSchema
   })
@@ -123,11 +123,11 @@ const Product = (props) => {
                 </label>
                 <select id="category" className="form-select"  value={values.category} onChange={handleChange}>
                   <option>Select Options</option>
-                  <option>Laptop</option>
-                  <option>Keyboard</option>
-                  <option>Watch</option>
-                  <option>Headset</option>
-                  <option>Mobile</option>
+                  <option>laptop</option>
+                  <option>keyboard</option>
+                  <option>watch</option>
+                  <option>headset</option>
+                  <option>mobile</option>
                 </select>
               </div>
               <button type="submit" className="btn btn-primary mt-4 " >

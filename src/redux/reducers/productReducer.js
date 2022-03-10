@@ -48,24 +48,21 @@ const productReducer = (state = initialState, action) => {
       };
 
       case FILTER_PRODUCTS:
+        console.log(action.payload.minPrice,"converrt")
+        
     //  console.log(state.productLists,"cbdhs")
       const searchedItems = state.productLists.filter
-      ((item) => {
-      console.log(parseInt(item.price.slice(1,item.price.length)) * 120,"price")
-      console.log(action.payload.minPrice,"minprice")
-      console.log(action.payload.maxPrice,"maxprice")
-      console.log(action.payload.category,"category")
-      console.log(item.category[1],"cat 1e")
-
-        return (
-       parseInt(item.price.slice(1,item.price.length)) * 120 >=
+      ((item) => 
+     
+      
+      Number(item.price.slice(1,item.price.length)) * 120 >=
         action.payload.minPrice &&
-        parseInt(item.price.slice(1,item.price.length)) * 120 <=
+       Number(item.price.slice(1,item.price.length)) * 120 <=
         action.payload.maxPrice &&
         item.category[1] === action.payload.category
-    );
     
-  });
+    
+  );
  console.log(searchedItems,"sdfdgfdg")
   return {
     
