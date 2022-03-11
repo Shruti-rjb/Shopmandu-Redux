@@ -4,11 +4,12 @@ import { BsCartPlus } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCart } from "../../redux/actions/cart";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
   let total = 0;
-  const { id } = props;
+  const navigate = useNavigate();
+  // const { id } = props;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -65,7 +66,9 @@ const Cart = (props) => {
                       <span style={{ display: "none" }}>
                         {(total += rupees * item.qty)}
                       </span>
-                      <p className="text-success">{item.stock-item.qty} items left</p>
+                      <p className="text-success">
+                        {item.stock - item.qty} items left
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -120,15 +123,13 @@ const Cart = (props) => {
             </p>
 
             <div className="col">
-              <Link to="/checkout">
-                <button
-                  className="btn btn-success"
-                  disabled={cart.length === 0 ? true : false}
-                >
-                  {" "}
-                  Checkout
-                </button>
-              </Link>
+              <button
+                className="btn btn-success "
+                disabled={cart?.length === 0 ? true : false}
+                onClick={() => navigate("/checkout")}
+              >
+                Checkout
+              </button>
             </div>
           </div>
         </Modal.Footer>

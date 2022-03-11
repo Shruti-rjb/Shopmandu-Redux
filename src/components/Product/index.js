@@ -19,6 +19,7 @@ const Product = (props) => {
   const handleShow = () => setShow(true);
 
   const products = useSelector((state) => state.product.productLists);
+ 
   const isLoading = useSelector((state) => state.product.isLoading);
   //console.log(products)
 
@@ -41,7 +42,7 @@ const Product = (props) => {
       
       minPrice: "",
       maxPrice: "",
-      date: "",
+      // date: "",
       category: "",
     },
     onSubmit : (values) => {
@@ -122,15 +123,15 @@ const Product = (props) => {
                   Category
                 </label>
                 <select id="category" className="form-select"  value={values.category} onChange={handleChange}>
-                  <option>Select Options</option>
-                  <option>laptop</option>
-                  <option>keyboard</option>
-                  <option>watch</option>
-                  <option>headset</option>
-                  <option>mobile</option>
+                  <option value= "">Select Options</option>
+                  <option value ="laptop">Laptop</option>
+                  <option value ="keyboard">Keyboard</option>
+                  <option value ="watch">Watch</option>
+                  <option value="headset">Headset</option>
+                  <option value ="mobile">Mobile</option>
                 </select>
               </div>
-              <button type="submit" className="btn btn-primary mt-4 " >
+              <button type="submit" className="btn btn-primary mt-4 "  onClick={handleClose}>
                 Search
               </button>
             </form>

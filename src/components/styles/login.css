@@ -1,5 +1,5 @@
 .checkoutCart{
-  background-color: #0f4697cc;
+  border-color: #000000;
   padding : 10px;
 }
 
@@ -8,6 +8,8 @@
     margin: 5rem auto;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 7%), 0 4px 6px -2px rgb(0 0 0 / 5%);
     border-radius: 0.9rem;
+    border-color:#0f4697cc ;
+    border-style: groove ;
     background-color: #ffffff;
     padding: 10px  14px;
   }

@@ -1,24 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { Checkout } from './components/Cart/Checkout';
-import { Login } from './components/Cart/Login';
-
+import {Provider} from "react-redux";
+import store from './redux/store';
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
-    <BrowserRouter>
-    <Routes>
-      <Route exact path ="/" element={<App/>} />
-      <Route exact path ="/checkout" element={<Checkout/>} />
-      <Route exact path ="/login" element={<Login/>} />
 
-        
-    </Routes>
+    <BrowserRouter>
+        <App/>
     </BrowserRouter>
     
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

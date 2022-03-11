@@ -13,8 +13,8 @@ const Navbar = (props) => {
         <span className="my-shop">Shopmandu</span>
         <a className="navbar-link me-3">Home</a>
         <Cart cart={cart} setCart={setCart} />
-        <Link to = "/login"><img src={user} alt="user image" className="user-image mb-2" /></Link>
-        
+        {/* <Link to = "/login"></Link> */}
+        <img src={user} alt="user image" className="user-image mb-2" />
       </div>
     </nav>
   );

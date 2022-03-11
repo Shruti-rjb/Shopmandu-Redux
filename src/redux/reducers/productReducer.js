@@ -29,7 +29,7 @@ const productReducer = (state = initialState, action) => {
       };
     case ADD_TO_CART:
       const item = state.productLists.find(
-        (product) => product.id === action.payload.id
+      (product) => product.id === action.payload.id
       );
       //  console.log(item,"data")
       return {
@@ -48,22 +48,20 @@ const productReducer = (state = initialState, action) => {
       };
 
       case FILTER_PRODUCTS:
-        console.log(action.payload.minPrice,"converrt")
-        
-    //  console.log(state.productLists,"cbdhs")
+       
       const searchedItems = state.productLists.filter
       ((item) => 
-     
-      
-      Number(item.price.slice(1,item.price.length)) * 120 >=
-        action.payload.minPrice &&
-       Number(item.price.slice(1,item.price.length)) * 120 <=
-        action.payload.maxPrice &&
-        item.category[1] === action.payload.category
     
+        { return ( Number(item.price.slice(1,item.price.length)) * 120 >=
+          action.payload.minPrice &&
+           Number(item.price.slice(1,item.price.length)) * 120 <=
+          action.payload.maxPrice &&
+          item.category[1] === action.payload.category
+        )}
+   
     
   );
- console.log(searchedItems,"sdfdgfdg")
+
   return {
     
     ...state,

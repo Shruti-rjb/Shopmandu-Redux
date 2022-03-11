@@ -3,10 +3,13 @@ import "../styles/login.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import "yup-phone";
 
 
 export const Checkout = () => {
-  const navigate = useNavigate()
+
+ const navigate = useNavigate();
+ 
   return (
     <div className="checkoutCart">
       <div className="container">
@@ -22,24 +25,28 @@ export const Checkout = () => {
             name: Yup.string().required("Required"),
             billingAddress: Yup.string().required("Required"),
             deliveryAddress: Yup.string().required("Required"),
-            telephoneNumber: Yup.number().required("Required"),
-            date: Yup.date().required("Required"),
+            telephoneNumber: Yup.string()
+            .phone()
+            .required('Telephone Number must be valid number'),
+         date: Yup.date().required("Required"),
           })}
-          onSubmit={(values, actions) => {
-           // resetForm({ values: "" })
-           navigate("/");
-            //   setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
+          onSubmit={(values,) => {
+           
+        
+              setTimeout(() => {
+              alert("please wait ....");
             //   actions.setSubmitting(false);
             //   actions.resetForm({
             //     values:""
-            //   }
-
+            //   }  
+            // resetForm({ values: "" })
+            navigate("/")
             //   )
-            // }, 2000);
+            }, 2000);
           }}
         >
           {(formik) => (
+            
             <form className="checkoutForm" onSubmit={formik.handleSubmit}>
               <div className=" text-center">
                 <h4 className="header">Form </h4>
@@ -92,7 +99,7 @@ export const Checkout = () => {
               <div className="form-group mt-3">
                 <label htmlFor="telephoneNumber">Telephone Number</label>
                 <input
-                  type="number"
+                  type="string"
                   id="telephoneNumber"
                   className="form-control mt-3"
                   onChange={formik.handleChange}
@@ -122,7 +129,7 @@ export const Checkout = () => {
               <button
                 type="submit"
                
-                className="btn btn-primary mt-3 "
+                className="btn btn-primary mt-4 "
               >
                 Submit
               </button>

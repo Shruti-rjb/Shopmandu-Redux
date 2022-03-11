@@ -1,11 +1,11 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-import { Provider } from "react-redux";
 import Navbar from "./components/Navbar";
+import ProductDetails from './components/Product/ProductDetails';
 import Product from "./components/Product/index";
-import store from './redux/store';  
-
+import {Route, Routes} from "react-router-dom"
+import { Checkout } from './components/Cart/Checkout';
 
 
 function App() {
@@ -13,16 +13,16 @@ function App() {
 
   return (
     <>
-    
-    <Provider store={store}>
   
-        <Navbar cart={cart} setCart={setCart} />
-        
-        <Product cart={cart} setCart={setCart} />
-
-       
+      <Navbar cart={cart} setCart={setCart} />
+      
+      <Routes>
+      <Route exact path ="/" element={<Product cart={cart} setCart={setCart} />}/>
+      <Route exact path ="/checkout" element={<Checkout/>} /> 
+      <Route exact path ="/product/:id" element={<ProductDetails/>}/>
+     </Routes>
    
-    </Provider>
+    
      
     </>
   );

@@ -2,14 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { addToCart } from "../../redux/actions/cart";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 
-const Cards = (props) => {
-  const { image, name, price, stock, release, category, addItem ,id} = props;
+  const Cards = (props) => {
+  const { image, name, price, stock, release, category , id} = props;
   const [count, setCount] = useState(0);
   
-  const [disable, setDisable] = useState(false);
+  // const [disable, setDisable] = useState(false);
 
   //const count = useSelector((state)=>state.product.count)
   
@@ -41,10 +42,12 @@ const Cards = (props) => {
   return (
     <div className=" card cards my-3 ">
       <div className=" image-box">
-        <img className="card-img-top"
+        <Link to={`/product/${id}`}>
+          <img className="card-img-top"
           src={`https://electronic-ecommerce.herokuapp.com/${image}`}
-          alt="Product image"
+          alt="Product"
         />
+        </Link>
       </div>
 
         <div className="card-body">
@@ -92,7 +95,7 @@ const Cards = (props) => {
         <p>{category}</p>
         
       </div>
-      <button type= "submit" disabled= {count === 0 ? true : false} onClick={() => {dispatch(addToCart(id, count))}} >
+      <button type= "submit"  className ="btn btn-primary" disabled= {count === 0 ? true : false} onClick={() => {dispatch(addToCart(id, count))}} >
         Add To Cart
       </button>
     </div>
