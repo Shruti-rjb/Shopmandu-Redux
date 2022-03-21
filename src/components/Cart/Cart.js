@@ -4,7 +4,7 @@ import { BsCartPlus } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCart } from "../../redux/actions/cart";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const Cart = (props) => {
   let total = 0;
@@ -73,7 +73,7 @@ const Cart = (props) => {
                   </div>
                 </div>
                 <div className="col-2">
-                  <div
+                  {/* <div
                     className="btn-group float-end mt-4"
                     role="group"
                     aria-label="Basic outlined example"
@@ -103,7 +103,7 @@ const Cart = (props) => {
                     >
                       +
                     </button>
-                  </div>
+                  </div> */}
 
                   <button
                     className="btn-danger mt-4"
@@ -124,12 +124,14 @@ const Cart = (props) => {
 
             <div className="col">
               <button
-                className="btn btn-success "
+                className="btn btn-success"
                 disabled={cart?.length === 0 ? true : false}
-                onClick={() => navigate("/checkout")}
+
+                onClick={()=>{navigate("/checkout")}}
               >
                 Checkout
               </button>
+              
             </div>
           </div>
         </Modal.Footer>

@@ -12,7 +12,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { filterItems } from "../../redux/actions/filter";
 
-const Product = (props) => {
+const Product = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
